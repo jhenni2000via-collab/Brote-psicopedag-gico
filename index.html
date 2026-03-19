@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brote Psicopedagógico — Consultoría y Acompañamiento</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal:       #1A7D6F;
+    --teal-mid:   #2EAA8A;
+    --green:      #3A8C3F;
+    --teal-light: #E6F4F1;
+    --green-light:#EAF5EB;
+    --page-bg:    #F5FAF9;
+    --dark:       #1B3A36;
+    --body-text:  #4A6963;
+    --card-bg:    #FFFFFF;
+    --amber:      #F5A623;
+    --amber-light:#FFF8E8;
+    --border:     #D4E8E4;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Open Sans', sans-serif;
+    background: var(--page-bg);
+    color: var(--body-text);
+    line-height: 1.7;
+  }
+  h1,h2,h3,h4 { font-family: 'Montserrat', sans-serif; color: var(--dark); }
+
+  /* ── NAVBAR ── */
+  nav {
+    background: var(--teal);
+    position: sticky; top: 0; z-index: 100;
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px;
+    box-shadow: 0 2px 12px rgba(26,125,111,.25);
+  }
+  .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .nav-logo {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: rgba(255,255,255,.18);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+  }
+  .nav-name { color: #fff; font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 600; line-height: 1.2; }
+  .nav-sub  { color: rgba(255,255,255,.72); font-size: 11px; font-weight: 400; }
+  .nav-links { display: flex; align-items: center; gap: 6px; }
+  .nav-links a {
+    color: rgba(255,255,255,.85); text-decoration: none;
+    font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 500;
+    padding: 7px 14px; border-radius: 8px;
+    transition: background .2s;
+  }
+  .nav-links a:hover { background: rgba(255,255,255,.15); color: #fff; }
+  .nav-links .btn-cta {
+    background: var(--green); color: #fff;
+    padding: 8px 18px; border-radius: 8px;
+    transition: background .2s, transform .1s;
+  }
+  .nav-links .btn-cta:hover { background: #2e7232; transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, #0f5248 0%, var(--teal) 45%, #2EAA8A 80%, var(--green) 100%);
+    padding: 80px 5% 90px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -60px; right: -60px;
+    width: 320px; height: 320px; border-radius: 50%;
+    background: rgba(255,255,255,.05);
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -80px; left: 30%;
+    width: 200px; height: 200px; border-radius: 50%;
+    background: rgba(255,255,255,.04);
+  }
+  .hero-inner { max-width: 640px; position: relative; z-index: 1; }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,.18);
+    color: #fff; font-size: 12px; font-weight: 500;
+    padding: 5px 16px; border-radius: 20px;
+    margin-bottom: 20px; letter-spacing: .03em;
+  }
+  .hero h1 {
+    color: #fff; font-size: clamp(28px, 5vw, 44px);
+    font-weight: 700; line-height: 1.2;
+    margin-bottom: 18px;
+  }
+  .hero h1 span { color: rgba(255,255,255,.75); font-weight: 400; font-size: .7em; display: block; margin-top: 6px; }
+  .hero-desc { color: rgba(255,255,255,.85); font-size: 16px; line-height: 1.7; max-width: 520px; margin-bottom: 32px; }
+  .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-white {
+    background: #fff; color: var(--teal);
+    font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 600;
+    padding: 12px 28px; border-radius: 10px; border: none; cursor: pointer;
+    text-decoration: none; display: inline-block;
+    transition: transform .15s, box-shadow .15s;
+  }
+  .btn-white:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,.15); }
+  .btn-outline {
+    background: transparent; color: #fff;
+    font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 500;
+    padding: 12px 28px; border-radius: 10px; border: 1.5px solid rgba(255,255,255,.55);
+    cursor: pointer; text-decoration: none; display: inline-block;
+    transition: background .2s, border-color .2s;
+  }
+  .btn-outline:hover { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.8); }
+  .hero-deco {
+    position: absolute; right: 6%; top: 50%; transform: translateY(-50%);
+    font-size: 120px; opacity: .12; user-select: none;
+  }
+
+  /* ── SECCIONES GENERALES ── */
+  section { padding: 64px 5%; }
+  .sec-alt { background: var(--teal-light); }
+  .sec-green { background: var(--green-light); }
+  .sec-white { background: #fff; }
+  .sec-tag {
+    display: inline-block;
+    background: var(--teal-light); color: var(--teal);
+    font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+    padding: 4px 14px; border-radius: 20px; margin-bottom: 10px;
+  }
+  .sec-tag.green { background: var(--green-light); color: var(--green); }
+  .sec-title { font-size: clamp(22px, 3.5vw, 32px); font-weight: 700; margin-bottom: 10px; }
+  .sec-subtitle { font-size: 16px; color: var(--body-text); max-width: 560px; line-height: 1.7; margin-bottom: 40px; }
+  .sec-header { text-align: center; margin-bottom: 48px; }
+  .sec-header .sec-tag { display: block; margin: 0 auto 10px; width: fit-content; }
+
+  /* ── TARJETAS DE SERVICIOS ── */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 24px;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(26,125,111,.12); }
+  .card-icon {
+    width: 52px; height: 52px; border-radius: 14px;
+    background: var(--teal-light);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px; margin-bottom: 18px;
+  }
+  .card-icon.green { background: var(--green-light); }
+  .card-icon.amber { background: var(--amber-light); }
+  .card h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; color: var(--dark); }
+  .card p  { font-size: 14px; line-height: 1.6; color: var(--body-text); margin-bottom: 14px; }
+  .card-tag {
+    display: inline-block;
+    background: var(--teal-light); color: var(--teal);
+    font-size: 11px; font-weight: 600; padding: 3px 12px; border-radius: 20px;
+  }
+  .card-tag.green { background: var(--green-light); color: var(--green); }
+  .card-tag.amber { background: var(--amber-light); color: #7A4A00; }
+
+  /* ── MISIÓN / VISIÓN ── */
+  .mv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 600px) { .mv-grid { grid-template-columns: 1fr; } }
+  .mv-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 16px; padding: 28px 24px;
+    border-top: 4px solid var(--teal);
+  }
+  .mv-card.green { border-top-color: var(--green); }
+  .mv-card .mv-icon { font-size: 30px; margin-bottom: 14px; }
+  .mv-card h3 { font-size: 15px; font-weight: 700; color: var(--teal); margin-bottom: 10px; }
+  .mv-card.green h3 { color: var(--green); }
+  .mv-card p { font-size: 14px; line-height: 1.7; color: var(--body-text); }
+
+  /* ── VALORES ── */
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+  }
+  .value-item {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 14px; padding: 20px 18px;
+    border-left: 3px solid var(--teal);
+  }
+  .value-item h4 { font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
+  .value-item p  { font-size: 13px; color: var(--body-text); line-height: 1.5; }
+
+  /* ── EQUIPO ── */
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  .team-card {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 16px; padding: 28px 20px; text-align: center;
+  }
+  .team-avatar {
+    width: 72px; height: 72px; border-radius: 50%;
+    background: var(--teal-light); color: var(--teal);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 700;
+    margin: 0 auto 16px;
+    border: 3px solid var(--teal);
+  }
+  .team-avatar.green { background: var(--green-light); color: var(--green); border-color: var(--green); }
+  .team-avatar.amber { background: var(--amber-light); color: #7A4A00; border-color: var(--amber); }
+  .team-card h3 { font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
+  .team-card p  { font-size: 13px; color: var(--body-text); line-height: 1.5; }
+  .team-note { font-size: 12px; color: var(--teal); margin-top: 8px; font-style: italic; }
+
+  /* ── SERVICIO DETALLE ── */
+  .service-block {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 16px; padding: 32px 28px; margin-bottom: 20px;
+    display: grid; grid-template-columns: auto 1fr; gap: 24px; align-items: start;
+  }
+  .service-num {
+    width: 48px; height: 48px; border-radius: 12px;
+    background: var(--teal); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 700;
+    flex-shrink: 0;
+  }
+  .service-num.green { background: var(--green); }
+  .service-num.amber { background: var(--amber); color: var(--dark); }
+  .service-block h3 { font-size: 18px; font-weight: 700; color: var(--dark); margin-bottom: 10px; }
+  .service-block p  { font-size: 14px; line-height: 1.7; color: var(--body-text); margin-bottom: 12px; }
+  .tags-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .tag {
+    background: var(--teal-light); color: var(--teal);
+    font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 20px;
+  }
+  .tag.green { background: var(--green-light); color: var(--green); }
+
+  /* ── UBICACIÓN ── */
+  .location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }
+  @media (max-width: 700px) { .location-grid { grid-template-columns: 1fr; } }
+  .info-list { list-style: none; }
+  .info-list li {
+    display: flex; gap: 14px; align-items: flex-start;
+    padding: 14px 0; border-bottom: 1px solid var(--border);
+  }
+  .info-list li:last-child { border-bottom: none; }
+  .info-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .info-label { font-size: 11px; color: var(--body-text); margin-bottom: 2px; text-transform: uppercase; letter-spacing: .05em; }
+  .info-val   { font-size: 14px; font-weight: 600; color: var(--dark); }
+  .map-placeholder {
+    background: var(--teal-light);
+    border: 2px dashed var(--teal);
+    border-radius: 16px;
+    height: 260px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 10px; color: var(--teal);
+    font-size: 14px; font-weight: 500; text-align: center; padding: 20px;
+  }
+  .map-placeholder .map-icon { font-size: 40px; }
+
+  /* ── CONTACTO ── */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  @media (max-width: 700px) { .contact-grid { grid-template-columns: 1fr; } }
+  .form-group { margin-bottom: 18px; }
+  .form-group label { display: block; font-size: 13px; font-weight: 600; color: var(--dark); margin-bottom: 6px; }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    border: 1.5px solid var(--border);
+    border-radius: 10px; padding: 11px 14px;
+    font-size: 14px; font-family: 'Open Sans', sans-serif;
+    color: var(--dark); background: #fff;
+    outline: none; transition: border-color .2s;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--teal); }
+  .form-group textarea { resize: vertical; min-height: 110px; }
+  .btn-submit {
+    background: var(--teal); color: #fff;
+    font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 600;
+    padding: 14px; border-radius: 10px; border: none;
+    width: 100%; cursor: pointer;
+    transition: background .2s, transform .1s;
+  }
+  .btn-submit:hover { background: #14655a; transform: translateY(-1px); }
+  .contact-note {
+    background: var(--teal-light); border-left: 4px solid var(--teal);
+    border-radius: 0 10px 10px 0; padding: 14px 18px; margin-top: 20px;
+    font-size: 13px; color: var(--dark); line-height: 1.6;
+  }
+
+  /* ── HORARIOS ── */
+  .schedule-table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+  .schedule-table th {
+    background: var(--teal); color: #fff;
+    font-family: 'Montserrat', sans-serif; font-size: 13px;
+    padding: 10px 16px; text-align: left;
+  }
+  .schedule-table th:first-child { border-radius: 10px 0 0 0; }
+  .schedule-table th:last-child  { border-radius: 0 10px 0 0; }
+  .schedule-table td { padding: 10px 16px; font-size: 13px; border-bottom: 1px solid var(--border); }
+  .schedule-table tr:last-child td { border-bottom: none; }
+  .schedule-table tr:nth-child(even) td { background: var(--teal-light); }
+  .open  { color: var(--green); font-weight: 600; }
+  .closed{ color: #cc4444; font-weight: 600; }
+
+  /* ── CTA BANNER ── */
+  .cta-banner {
+    background: linear-gradient(120deg, var(--dark) 0%, #0f5248 60%, var(--teal) 100%);
+    padding: 56px 5%; text-align: center;
+  }
+  .cta-banner h2 { color: #fff; font-size: clamp(22px, 3vw, 32px); font-weight: 700; margin-bottom: 12px; }
+  .cta-banner p  { color: rgba(255,255,255,.8); font-size: 16px; margin-bottom: 32px; max-width: 520px; margin-left: auto; margin-right: auto; }
+  .btn-cta-large {
+    background: var(--amber); color: var(--dark);
+    font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700;
+    padding: 16px 40px; border-radius: 12px; border: none;
+    cursor: pointer; text-decoration: none; display: inline-block;
+    transition: transform .15s, box-shadow .15s;
+  }
+  .btn-cta-large:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245,166,35,.4); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark); color: rgba(255,255,255,.7);
+    padding: 48px 5% 28px;
+  }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 36px; }
+  @media (max-width: 700px) { .footer-grid { grid-template-columns: 1fr; } }
+  .footer-brand .nav-name { font-size: 18px; color: #fff; }
+  .footer-brand p { font-size: 14px; line-height: 1.7; margin-top: 12px; max-width: 280px; }
+  footer h4 { font-family: 'Montserrat', sans-serif; color: #fff; font-size: 14px; font-weight: 600; margin-bottom: 14px; }
+  footer ul { list-style: none; }
+  footer ul li { font-size: 13px; padding: 4px 0; }
+  footer ul li a { color: rgba(255,255,255,.65); text-decoration: none; transition: color .2s; }
+  footer ul li a:hover { color: #fff; }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,.1);
+    padding-top: 20px; text-align: center;
+    font-size: 12px; color: rgba(255,255,255,.4);
+  }
+  .footer-bottom span { color: var(--teal-mid); }
+
+  /* ── WHATSAPP FLOTANTE ── */
+  .whatsapp-float {
+    position: fixed; bottom: 28px; right: 28px; z-index: 999;
+    width: 58px; height: 58px; border-radius: 50%;
+    background: #25D366; color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px; box-shadow: 0 4px 20px rgba(37,211,102,.5);
+    text-decoration: none; transition: transform .2s, box-shadow .2s;
+  }
+  .whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,.6); }
+
+  /* ── ANIMACIONES DE ENTRADA ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-inner > * { animation: fadeUp .6s ease both; }
+  .hero-inner > *:nth-child(1) { animation-delay: .1s; }
+  .hero-inner > *:nth-child(2) { animation-delay: .2s; }
+  .hero-inner > *:nth-child(3) { animation-delay: .35s; }
+  .hero-inner > *:nth-child(4) { animation-delay: .5s; }
+
+  /* ── GALERÍA ── */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  @media (max-width: 600px) { .gallery-grid { grid-template-columns: 1fr 1fr; } }
+  .gallery-item {
+    border-radius: 14px; overflow: hidden;
+    aspect-ratio: 1 / 1;
+    background: var(--teal-light);
+    border: 1px solid var(--border);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 10px; cursor: pointer;
+    transition: transform .2s, box-shadow .2s;
+    position: relative;
+  }
+  .gallery-item:hover { transform: scale(1.03); box-shadow: 0 10px 28px rgba(26,125,111,.15); }
+  .gallery-item.tall { grid-row: span 2; aspect-ratio: auto; min-height: 200px; }
+  .gallery-item .gal-icon { font-size: 36px; }
+  .gallery-item .gal-label { font-size: 12px; font-weight: 600; color: var(--teal); text-align: center; padding: 0 12px; }
+  .gallery-item .gal-overlay {
+    position: absolute; inset: 0;
+    background: rgba(26,125,111,.0);
+    display: flex; align-items: center; justify-content: center;
+    transition: background .2s;
+    border-radius: 14px;
+  }
+  .gallery-item:hover .gal-overlay { background: rgba(26,125,111,.12); }
+  .gallery-item img { width: 100%; height: 100%; object-fit: cover; border-radius: 14px; }
+
+  /* ── FAQ ── */
+  .faq-list { max-width: 760px; margin: 0 auto; }
+  .faq-item {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 14px; margin-bottom: 12px;
+    overflow: hidden; transition: box-shadow .2s;
+  }
+  .faq-item:hover { box-shadow: 0 4px 16px rgba(26,125,111,.1); }
+  .faq-question {
+    width: 100%; background: none; border: none; cursor: pointer;
+    padding: 20px 24px; text-align: left;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 600;
+    color: var(--dark);
+  }
+  .faq-question:hover { background: var(--teal-light); }
+  .faq-arrow {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--teal-light); color: var(--teal);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; flex-shrink: 0;
+    transition: transform .3s, background .2s;
+  }
+  .faq-item.open .faq-arrow { transform: rotate(180deg); background: var(--teal); color: #fff; }
+  .faq-answer {
+    max-height: 0; overflow: hidden;
+    transition: max-height .35s ease, padding .3s;
+    padding: 0 24px;
+  }
+  .faq-item.open .faq-answer { max-height: 300px; padding: 0 24px 20px; }
+  .faq-answer p { font-size: 14px; line-height: 1.8; color: var(--body-text); border-top: 1px solid var(--border); padding-top: 16px; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 0 4%; }
+    .nav-links a:not(.btn-cta) { display: none; }
+    .service-block { grid-template-columns: 1fr; }
+    .hero-deco { display: none; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="#inicio" class="nav-brand">
+    <div class="nav-logo">🌱</div>
+    <div>
+      <div class="nav-name">Brote Psicopedagógico</div>
+      <div class="nav-sub">Consultoría y Acompañamiento</div>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="#quienes">Quiénes somos</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#galeria">Galería</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contacto" class="btn-cta">Agendar cita</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="inicio" style="padding:0;">
+  <div class="hero">
+    <div class="hero-deco">🌱</div>
+    <div class="hero-inner">
+      <div class="hero-badge">Consultorio Psicopedagógico · Oaxaca de Juárez</div>
+      <h1>
+        Todo brote merece florecer
+        <span>Acompañamiento inclusivo y comunitario</span>
+      </h1>
+      <p class="hero-desc">
+        Somos un consultorio especializado en la atención psicopedagógica de niños con necesidades educativas especiales y familias en situación de vulnerabilidad, desde el corazón de Oaxaca.
+      </p>
+      <div class="hero-btns">
+        <a href="#servicios" class="btn-white">Conoce nuestros servicios</a>
+        <a href="#contacto" class="btn-outline">Contáctanos</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS RÁPIDOS -->
+<section class="sec-white">
+  <div class="sec-header">
+    <span class="sec-tag">Lo que ofrecemos</span>
+    <h2 class="sec-title">Nuestros servicios</h2>
+    <p class="sec-subtitle">Atención personalizada, ética y culturalmente pertinente para cada niño y familia de Oaxaca.</p>
+  </div>
+  <div class="cards-grid">
+    <div class="card">
+      <div class="card-icon">🔍</div>
+      <h3>Evaluación Psicopedagógica</h3>
+      <p>Diagnóstico integral con instrumentos estandarizados (WISC-V, PROLEC, Batería Evalúa) para identificar necesidades educativas especiales.</p>
+      <span class="card-tag">Niños 4–12 años</span>
+    </div>
+    <div class="card">
+      <div class="card-icon green">🧩</div>
+      <h3>Intervención en NEE</h3>
+      <p>Diseño e implementación de Planes de Apoyo Individualizado (PAI) con seguimiento continuo y coordinación con docentes y familia.</p>
+      <span class="card-tag green">Personalizado</span>
+    </div>
+    <div class="card">
+      <div class="card-icon">👨‍👩‍👧</div>
+      <h3>Orientación Familiar</h3>
+      <p>Acompañamiento a familias con pautas de crianza positiva, comunicación familiar y estrategias de apoyo escolar en casa.</p>
+      <span class="card-tag">Todas las edades</span>
+    </div>
+    <div class="card">
+      <div class="card-icon amber">📚</div>
+      <h3>Talleres</h3>
+      <p>Talleres de habilidades socioemocionales, regulación emocional y autoestima para usuarios, padres y docentes.</p>
+      <span class="card-tag amber">Comunidad</span>
+    </div>
+  </div>
+</section>
+
+<!-- QUIÉNES SOMOS -->
+<section id="quienes" class="sec-alt">
+  <div style="max-width: 900px; margin: 0 auto;">
+    <span class="sec-tag">Sobre nosotros</span>
+    <h2 class="sec-title">Un brote de cambio en Oaxaca</h2>
+    <p class="sec-subtitle">
+      <strong>Brote Psicopedagógico</strong> nace en el corazón de Oaxaca de Juárez como una respuesta concreta y comprometida ante la realidad de miles de niños y familias que enfrentan barreras para aprender y participar plenamente en la vida educativa y social de su comunidad.
+      <br><br>
+      Un brote es la primera señal visible de vida: pequeño, frágil, pero lleno de fuerza. Así concebimos a cada uno de nuestros usuarios: no como personas con déficits que corregir, sino como seres humanos con un potencial genuino que, con el acompañamiento adecuado, puede florecer en cualquier condición.
+    </p>
+
+    <div class="mv-grid" style="margin-bottom: 40px;">
+      <div class="mv-card">
+        <div class="mv-icon">🎯</div>
+        <h3>Misión</h3>
+        <p>Brindar atención psicopedagógica de calidad, inclusiva y accesible a niños, adolescentes y familias de Oaxaca de Juárez, especialmente a quienes presentan necesidades educativas especiales o se encuentran en situación de vulnerabilidad, promoviendo el desarrollo integral del aprendizaje a través de intervenciones personalizadas, éticas y culturalmente pertinentes.</p>
+      </div>
+      <div class="mv-card green">
+        <div class="mv-icon">🔭</div>
+        <h3>Visión</h3>
+        <p>Ser, para el año 2030, el consultorio psicopedagógico de referencia en el estado de Oaxaca en materia de inclusión educativa, reconocido por su enfoque comunitario, la excelencia de sus profesionales y su impacto real en las trayectorias de vida de sus usuarios y familias.</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:20px; margin-bottom:20px; color:var(--dark);">Nuestros valores</h3>
+    <div class="values-grid">
+      <div class="value-item">
+        <h4>🤝 Inclusión</h4>
+        <p>Toda persona tiene derecho a aprender y desarrollarse sin exclusión.</p>
+      </div>
+      <div class="value-item">
+        <h4>💛 Respeto</h4>
+        <p>Reconocemos la dignidad, la diversidad cultural y los ritmos individuales de cada usuario.</p>
+      </div>
+      <div class="value-item">
+        <h4>🌍 Compromiso social</h4>
+        <p>La práctica profesional está al servicio de los más vulnerables.</p>
+      </div>
+      <div class="value-item">
+        <h4>🔒 Ética profesional</h4>
+        <p>Actuamos con confidencialidad, honestidad y responsabilidad en todo momento.</p>
+      </div>
+      <div class="value-item">
+        <h4>🤲 Trabajo colaborativo</h4>
+        <p>Fomentamos redes de apoyo entre familias, escuelas y comunidad.</p>
+      </div>
+      <div class="value-item">
+        <h4>💡 Innovación pedagógica</h4>
+        <p>Aplicamos enfoques actualizados y basados en evidencia científica.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPO -->
+<section class="sec-white">
+  <div class="sec-header">
+    <span class="sec-tag">Las personas detrás del consultorio</span>
+    <h2 class="sec-title">Nuestro equipo</h2>
+    <p class="sec-subtitle">Un equipo multidisciplinar comprometido con la inclusión y el desarrollo integral de cada persona.</p>
+  </div>
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-avatar">DG</div>
+      <h3>Directora General</h3>
+      <p>Psicopedagoga · Coordinación general y atención de casos complejos</p>
+      <p class="team-note">📷 Agregar foto aquí</p>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar green">EN</div>
+      <h3>Especialista en NEE</h3>
+      <p>Evaluaciones psicopedagógicas integrales · Planes de Apoyo Individualizado</p>
+      <p class="team-note">📷 Agregar foto aquí</p>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar amber">PC</div>
+      <h3>Psicólogo/a Clínico-Educativo</h3>
+      <p>Atención emocional · Talleres de habilidades socioemocionales</p>
+      <p class="team-note">📷 Agregar foto aquí</p>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar" style="background:#F3E8FF; color:#6B21A8; border-color:#9333EA;">OF</div>
+      <h3>Orientador/a Familiar</h3>
+      <p>Acompañamiento familiar · Talleres de crianza positiva y comunicación</p>
+      <p class="team-note">📷 Agregar foto aquí</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS DETALLE -->
+<section id="servicios" class="sec-green">
+  <div class="sec-header">
+    <span class="sec-tag green">Descripción completa</span>
+    <h2 class="sec-title">¿Cómo te acompañamos?</h2>
+    <p class="sec-subtitle">Cada servicio está diseñado con un enfoque integral, ético y culturalmente pertinente para el contexto oaxaqueño.</p>
+  </div>
+
+  <div class="service-block">
+    <div class="service-num">1</div>
+    <div>
+      <h3>🔍 Evaluación Psicopedagógica</h3>
+      <p>Diagnóstico integral para identificar necesidades educativas especiales en niños y adolescentes. Incluye la aplicación e interpretación de instrumentos estandarizados como WISC-V, Batería Psicopedagógica Evalúa, PROLEC y EEDP. Se entrega un informe detallado con recomendaciones de intervención individualizadas.</p>
+      <div class="tags-row">
+        <span class="tag">Niños 4–12 años</span>
+        <span class="tag">TDAH</span>
+        <span class="tag">Dislexia</span>
+        <span class="tag">TEA</span>
+        <span class="tag">Discapacidad intelectual</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="service-block">
+    <div class="service-num green">2</div>
+    <div>
+      <h3>🧩 Intervención en NEE</h3>
+      <p>Diseño, implementación y evaluación de Planes de Apoyo Individualizado (PAI) para cada usuario con NEE. Seguimiento sistemático del avance de cada caso y ajuste de estrategias de intervención. Coordinación con docentes y familias para la implementación de ajustes razonables en el entorno escolar.</p>
+      <div class="tags-row">
+        <span class="tag green">Intervención continua</span>
+        <span class="tag green">Coordinación escolar</span>
+        <span class="tag green">PAI personalizado</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="service-block">
+    <div class="service-num">3</div>
+    <div>
+      <h3>👨‍👩‍👧 Orientación Familiar</h3>
+      <p>Acompañamiento individualizado a familias de usuarios del consultorio. Talleres para padres y cuidadores sobre crianza positiva, comunicación familiar y apoyo escolar en casa. Identificación de factores de riesgo psicosocial y vinculación con redes de apoyo comunitario.</p>
+      <div class="tags-row">
+        <span class="tag">Todas las edades</span>
+        <span class="tag">Crianza positiva</span>
+        <span class="tag">Apoyo comunitario</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="service-block">
+    <div class="service-num amber">4</div>
+    <div>
+      <h3>📚 Talleres para padres y docentes</h3>
+      <p>Talleres de habilidades socioemocionales: regulación emocional, autoestima y habilidades sociales. Sensibilización docente en educación inclusiva y estrategias para el aula. Facilitación grupal con metodologías participativas y culturalmente pertinentes para el contexto oaxaqueño.</p>
+      <div class="tags-row">
+        <span class="tag amber">Padres y cuidadores</span>
+        <span class="tag amber">Docentes</span>
+        <span class="tag amber">Comunidad</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center; margin-top: 20px;">
+    <p style="font-size:14px; color:var(--body-text); margin-bottom:20px;">Tarifas diferenciadas según situación socioeconómica. Contáctanos para más información.</p>
+    <a href="#contacto" class="btn-white" style="background:var(--teal); color:#fff; font-family:'Montserrat',sans-serif; font-weight:600; font-size:15px; padding:14px 36px; border-radius:12px; text-decoration:none; display:inline-block; transition: transform .15s;">Agendar una cita →</a>
+  </div>
+</section>
+
+<!-- UBICACIÓN -->
+<section id="ubicacion" class="sec-white">
+  <div style="max-width: 900px; margin: 0 auto;">
+    <span class="sec-tag">¿Dónde estamos?</span>
+    <h2 class="sec-title" style="margin-bottom: 32px;">Nuestra ubicación</h2>
+    <div class="location-grid">
+      <div>
+        <ul class="info-list">
+          <li>
+            <div class="info-icon">📍</div>
+            <div>
+              <div class="info-label">Dirección</div>
+              <div class="info-val">Escuadrón 201 núm. 210, Col. Reforma, C.P. 68050, Oaxaca de Juárez, Oaxaca</div>
+            </div>
+          </li>
+          <li>
+            <div class="info-icon">🚌</div>
+            <div>
+              <div class="info-label">Cómo llegar</div>
+              <div class="info-val">A dos cuadras del Parque El Llano. Cerca de Av. Juárez y rutas de transporte colectivo.</div>
+            </div>
+          </li>
+          <li>
+            <div class="info-icon">⏰</div>
+            <div>
+              <div class="info-label">Horarios de atención</div>
+              <div class="info-val">[Agregar horarios aquí]</div>
+            </div>
+          </li>
+          <li>
+            <div class="info-icon">📱</div>
+            <div>
+              <div class="info-label">WhatsApp / Teléfono</div>
+              <div class="info-val">[Agregar número de contacto]</div>
+            </div>
+          </li>
+          <li>
+            <div class="info-icon">✉️</div>
+            <div>
+              <div class="info-label">Correo electrónico</div>
+              <div class="info-val">[Agregar correo electrónico]</div>
+            </div>
+          </li>
+        </ul>
+
+        <table class="schedule-table" style="margin-top:24px;">
+          <thead>
+            <tr><th>Día</th><th>Horario</th><th>Estado</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Lunes – Viernes</td><td>[Horario]</td><td class="open">Abierto</td></tr>
+            <tr><td>Sábado</td><td>[Horario]</td><td class="open">Abierto</td></tr>
+            <tr><td>Domingo</td><td>—</td><td class="closed">Cerrado</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="map-placeholder">
+        <div class="map-icon">🗺️</div>
+        <strong>Mapa de Google Maps</strong>
+        <p style="font-size:13px; color:var(--teal); max-width:200px; text-align:center;">En Google Sites: Insertar → Mapa → buscar "Escuadrón 201 210 Col. Reforma Oaxaca"</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERÍA -->
+<section id="galeria" class="sec-white">
+  <div class="sec-header">
+    <span class="sec-tag">Nuestro espacio</span>
+    <h2 class="sec-title">Galería</h2>
+    <p class="sec-subtitle">Conoce el espacio donde acompañamos cada proceso de aprendizaje.</p>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item tall">
+      <div class="gal-icon">🏡</div>
+      <div class="gal-label">Consultorio principal<br><span style="font-size:11px;color:var(--body-text);">Reemplaza con foto real</span></div>
+      <div class="gal-overlay"></div>
+    </div>
+    <div class="gallery-item">
+      <div class="gal-icon">📚</div>
+      <div class="gal-label">Área de materiales</div>
+      <div class="gal-overlay"></div>
+    </div>
+    <div class="gallery-item">
+      <div class="gal-icon">🧩</div>
+      <div class="gal-label">Sala de intervención</div>
+      <div class="gal-overlay"></div>
+    </div>
+    <div class="gallery-item">
+      <div class="gal-icon">👨‍👩‍👧</div>
+      <div class="gal-label">Orientación familiar</div>
+      <div class="gal-overlay"></div>
+    </div>
+    <div class="gallery-item">
+      <div class="gal-icon">🌿</div>
+      <div class="gal-label">Entrada del consultorio</div>
+      <div class="gal-overlay"></div>
+    </div>
+    <div class="gallery-item">
+      <div class="gal-icon">🎨</div>
+      <div class="gal-label">Área de talleres</div>
+      <div class="gal-overlay"></div>
+    </div>
+  </div>
+  <p style="text-align:center;margin-top:20px;font-size:13px;color:var(--body-text);">💡 Para agregar tus fotos reales, reemplaza cada bloque de galería con una etiqueta &lt;img src="tu-foto.jpg"&gt; dentro del mismo div.</p>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="sec-alt">
+  <div class="sec-header">
+    <span class="sec-tag">Resolvemos tus dudas</span>
+    <h2 class="sec-title">Preguntas frecuentes</h2>
+    <p class="sec-subtitle">Todo lo que necesitas saber antes de tu primera consulta.</p>
+  </div>
+  <div class="faq-list">
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        ¿Cómo sé si mi hijo/a necesita una evaluación psicopedagógica?
+        <span class="faq-arrow">▾</span>
+      </button>
+      <div class="faq-answer">
+        <p>Si notas que tu hijo/a tiene dificultades persistentes para leer, escribir, hacer operaciones matemáticas, seguir instrucciones, mantener la atención o relacionarse con sus compañeros, puede ser una señal de que necesita una evaluación. También si la escuela ha reportado bajo rendimiento o comportamiento que no corresponde a su edad. Lo mejor es consultar con un especialista para tener claridad y un plan de acción concreto.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        ¿Cuánto dura el proceso de evaluación?
+        <span class="faq-arrow">▾</span>
+      </button>
+      <div class="faq-answer">
+        <p>El proceso de evaluación psicopedagógica generalmente toma entre 2 y 4 sesiones, dependiendo de la edad del niño/a y las áreas a explorar. Al final entregamos un informe completo con resultados, diagnóstico y recomendaciones, que explicamos en detalle a la familia en una sesión de devolución.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        ¿Atienden a niños con autismo (TEA) o TDAH?
+        <span class="faq-arrow">▾</span>
+      </button>
+      <div class="faq-answer">
+        <p>Sí. Contamos con experiencia en evaluación e intervención psicopedagógica de niños con TEA, TDAH, dislexia, discapacidad intelectual y otros trastornos del aprendizaje. Cada caso se aborda de forma individualizada con un Plan de Apoyo diseñado específicamente para ese niño/a.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        ¿Cuánto cuestan los servicios?
+        <span class="faq-arrow">▾</span>
+      </button>
+      <div class="faq-answer">
+        <p>Trabajamos con tarifas diferenciadas según la situación socioeconómica de cada familia, porque creemos que ningún niño debe quedarse sin atención por motivos económicos. Contáctanos y con gusto te informamos sobre costos y opciones de pago.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        ¿Necesito un diagnóstico previo para solicitar atención?
+        <span class="faq-arrow">▾</span>
+      </button>
+      <div class="faq-answer">
+        <p>No. No necesitas diagnóstico previo. Puedes llegar con tus dudas y preocupaciones, y nosotros realizamos la valoración inicial para determinar qué apoyo necesita tu hijo/a o familia. Si ya tienes diagnósticos anteriores, son bienvenidos como parte del historial.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        ¿Los padres participan en el proceso?
+        <span class="faq-arrow">▾</span>
+      </button>
+      <div class="faq-answer">
+        <p>Absolutamente. La participación de la familia es fundamental en nuestro modelo. Realizamos sesiones de orientación familiar, talleres para padres y cuidadores, y mantenemos comunicación constante sobre el avance del proceso. El acompañamiento en casa es tan importante como el trabajo en el consultorio.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        ¿Cómo agendo una primera cita?
+        <span class="faq-arrow">▾</span>
+      </button>
+      <div class="faq-answer">
+        <p>Puedes agendar de tres formas: llenando el formulario en esta página, enviando un mensaje por WhatsApp al [tu número aquí], o llamándonos directamente. En la primera cita realizamos una valoración inicial para orientarte sobre el proceso más adecuado para tu caso.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <h2>¿Listo para dar el primer paso?</h2>
+  <p>Cada niño y familia merece un acompañamiento personalizado. Contáctanos hoy y juntos encontramos el camino.</p>
+  <a href="#contacto" class="btn-cta-large">Agendar una cita</a>
+</div>
+
+<!-- CONTACTO -->
+<section id="contacto" class="sec-alt">
+  <div style="max-width: 900px; margin: 0 auto;">
+    <span class="sec-tag">Escríbenos</span>
+    <h2 class="sec-title" style="margin-bottom: 10px;">Contáctanos</h2>
+    <p style="font-size:15px; color:var(--body-text); margin-bottom:36px;">Estamos aquí para acompañarte. Llena el formulario y nos ponemos en contacto contigo a la brevedad.</p>
+
+    <div class="contact-grid">
+      <div>
+        <div class="form-group">
+          <label>Nombre completo *</label>
+          <input type="text" placeholder="Ej. María González">
+        </div>
+        <div class="form-group">
+          <label>Teléfono / WhatsApp *</label>
+          <input type="tel" placeholder="Ej. 951 123 4567">
+        </div>
+        <div class="form-group">
+          <label>Correo electrónico</label>
+          <input type="email" placeholder="tucorreo@email.com">
+        </div>
+        <div class="form-group">
+          <label>Edad del niño/a</label>
+          <input type="text" placeholder="Ej. 7 años">
+        </div>
+        <div class="form-group">
+          <label>Motivo de consulta *</label>
+          <textarea placeholder="Cuéntanos brevemente la situación que motiva la consulta..."></textarea>
+        </div>
+        <div class="form-group">
+          <label>¿Cómo nos encontraste?</label>
+          <select>
+            <option value="">Selecciona una opción</option>
+            <option>Redes sociales</option>
+            <option>Recomendación de alguien</option>
+            <option>Búsqueda en internet</option>
+            <option>Escuela o institución</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <button class="btn-submit">Enviar mensaje ✉️</button>
+        <div class="contact-note">
+          💡 También puedes escribirnos directamente por WhatsApp al número <strong>[tu número aquí]</strong>. Respondemos en horario de atención.
+        </div>
+      </div>
+
+      <div>
+        <h3 style="font-size:17px; margin-bottom:20px; color:var(--dark);">Información de contacto</h3>
+        <ul class="info-list">
+          <li>
+            <div class="info-icon">📍</div>
+            <div>
+              <div class="info-label">Dirección</div>
+              <div class="info-val">Escuadrón 201 núm. 210<br>Col. Reforma, Oaxaca de Juárez</div>
+            </div>
+          </li>
+          <li>
+            <div class="info-icon">📱</div>
+            <div>
+              <div class="info-label">WhatsApp / Teléfono</div>
+              <div class="info-val">[Agregar número]</div>
+            </div>
+          </li>
+          <li>
+            <div class="info-icon">✉️</div>
+            <div>
+              <div class="info-label">Correo</div>
+              <div class="info-val">[Agregar correo]</div>
+            </div>
+          </li>
+          <li>
+            <div class="info-icon">📸</div>
+            <div>
+              <div class="info-label">Instagram</div>
+              <div class="info-val">[Agregar usuario]</div>
+            </div>
+          </li>
+          <li>
+            <div class="info-icon">👥</div>
+            <div>
+              <div class="info-label">Facebook</div>
+              <div class="info-val">[Agregar página]</div>
+            </div>
+          </li>
+        </ul>
+
+        <div style="background:#fff; border:1px solid var(--border); border-radius:14px; padding:20px; margin-top:24px;">
+          <p style="font-size:13px; color:var(--body-text); line-height:1.7;">
+            <strong style="color:var(--dark);">Tarifas accesibles</strong><br>
+            Contamos con tarifas diferenciadas según la situación socioeconómica de cada familia. Nadie se queda sin atención por motivos económicos.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:4px;">
+        <span style="font-size:28px;">🌱</span>
+        <span class="nav-name" style="font-family:'Montserrat',sans-serif; font-size:17px; font-weight:700; color:#fff;">Brote Psicopedagógico</span>
+      </div>
+      <p>Consultoría y Acompañamiento Psicopedagógico Inclusivo y Comunitario. Oaxaca de Juárez, Oaxaca.</p>
+    </div>
+    <div>
+      <h4>Navegación</h4>
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#quienes">Quiénes somos</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#ubicacion">Ubicación</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contacto</h4>
+      <ul>
+        <li>📍 Col. Reforma, Oaxaca</li>
+        <li>📱 [Teléfono]</li>
+        <li>✉️ [Correo]</li>
+        <li>📸 [Instagram]</li>
+        <li>👥 [Facebook]</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 <span>Brote Psicopedagógico</span> · Consultoría y Acompañamiento · Oaxaca, México
+  </div>
+</footer>
+
+<!-- BOTÓN FLOTANTE WHATSAPP -->
+<a href="https://wa.me/[TuNúmero]" class="whatsapp-float" target="_blank" title="Escríbenos por WhatsApp">
+  💬
+</a>
+
+<script>
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+</script>
+
+</body>
+</html>
